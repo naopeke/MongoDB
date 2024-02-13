@@ -11,7 +11,7 @@ const UserSchema = new mongoose.Schema({
             'The password should be longer'
         ],
         select: false
-    }
+    }}, { collection: 'user'
 });
 
 module.exports = mongoose.model('User', UserSchema);

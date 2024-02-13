@@ -5,7 +5,9 @@ let Credentials = require('./credentials');
 
 
 
-// node:48037) [MONGODB DRIVER] Warning: useNewUrlParser is a deprecated option: useNewUrlParser has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+// node:48037) [MONGODB DRIVER] Warning: useNewUrlParser is a deprecated option: 
+// useNewUrlParser has no effect since Node.js Driver version 4.0.0 and will be removed 
+// in the next major version
 mongoose.connect('mongodb+srv://naomukai:STGG0f3zjWIrLJT8@cluster0.vqow74u.mongodb.net/codenotch', 
                 {useNewUrlParser : false,
                 useUnifiedTopology: false}
@@ -25,18 +27,18 @@ mongoose.connect('mongodb+srv://naomukai:STGG0f3zjWIrLJT8@cluster0.vqow74u.mongo
 //     });
 
 
-// let userDocument2 = new User({
-//     login: "Michael",
-//     password: "mikeydog"
-// });
+let userDocument2 = new User({
+    login: "Michael",
+    password: "mikeydog"
+});
 
-// userDocument2.save()
-//     .then((data) => {
-//         console.log(data);
-//     })
-//     .catch((err) => {
-//         console.log(err);
-//     });
+userDocument2.save()
+    .then((data) => {
+        console.log(data);
+    })
+    .catch((err) => {
+        console.log(err);
+    });
 
 
 // let profileDocument1 = new Profile({
@@ -73,31 +75,31 @@ mongoose.connect('mongodb+srv://naomukai:STGG0f3zjWIrLJT8@cluster0.vqow74u.mongo
 //     });
 
 
-let credentialDocument1 = new Credentials({
-    address: "Calle Jose Echegaray",
-    phone: 123456789,
-    email:"kate@hopmail.es"
-});
+// let credentialDocument1 = new Credentials({
+//     address: "Calle Jose Echegaray",
+//     phone: 123456789,
+//     email:"kate@hopmail.es"
+// });
 
-credentialDocument1.save()
-    .then((data) => {
-        console.log(data);
-    })
-    .catch((err) => {
-        console.log(err);
-    });
+// credentialDocument1.save()
+//     .then((data) => {
+//         console.log(data);
+//     })
+//     .catch((err) => {
+//         console.log(err);
+//     });
 
 
-let credentialDocument2 = new Credentials({
-    address: "Calle Ray",
-    phone: 987654321,
-    email:"mike@hopmail.es"
-});
+// let credentialDocument2 = new Credentials({
+//     address: "Calle Ray",
+//     phone: 987654321,
+//     email:"mike@hopmail.es"
+// });
 
-credentialDocument2.save()
-    .then((data) => {
-        console.log(data);
-    })
-    .catch((err) => {
-        console.log(err);
-    });
+// credentialDocument2.save()
+//     .then((data) => {
+//         console.log(data);
+//     })
+//     .catch((err) => {
+//         console.log(err);
+//     });
