@@ -1,0 +1,15 @@
+{
+  "name": "dia1",
+  "version": "1.0.0",
+  "main": "dia1.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "nao",
+  "license": "ISC",
+  "dependencies": {
+    "mongodb": "^6.3.0",
+    "mongoose": "^8.1.2"
+  },
+  "description": ""
+}
