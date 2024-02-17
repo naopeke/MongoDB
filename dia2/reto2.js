@@ -129,6 +129,17 @@ models.Student.findOne({'_id': '65cfadc2d980512abcc62b31'}, 'marks')
         console.log('Error');
     })
 
+models.Student.findOne({'_id': '65cfadc2d980512abcc62b31'}, 'marks')
+    .then(function(student){
+        console.log('Notas de Elena: ')
+        let notas = student.marks.forEach(function(currentValue){
+            return console.log(`${currentValue.subjects.title},${currentValue.mark}`)
+        })
+    })
+    .catch(function(){
+        console.log('Error');
+    })
+
 
 //Todas las asignaturas de un alumno.
 models.Student.findOne({'_id': '65cfadc2d980512abcc62b31'})
