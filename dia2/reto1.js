@@ -11,8 +11,8 @@ let Photo = require('./fotos');
 //at new MongoClient (/home/naopeke/Codenotch/Back-End/MongoDB/dia2/node_modules/mongodb/lib/mongo_client.js:51:63)
 //at NativeConnection.createClient (/home/naopeke/Codenotch/Back-End/MongoDB/dia2/node_modules/mongoose/lib/drivers/node-mongodb-native/connection.js:293:14)
 mongoose.connect('mongodb+srv://naomukai:STGG0f3zjWIrLJT8@cluster0.vqow74u.mongodb.net/dia2', 
-                // {useNewUrlParser : true,
-                // useUnifiedTopology: true,
+                // {useNewUrlParser : false,
+                // useUnifiedTopology: false,
                 // useFindAndModify: false}
                 );
 
