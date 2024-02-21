@@ -13,7 +13,8 @@ let Photo = require('./fotos');
 mongoose.connect('mongodb+srv://naomukai:STGG0f3zjWIrLJT8@cluster0.vqow74u.mongodb.net/dia2', 
                 // {useNewUrlParser : false,
                 // useUnifiedTopology: false,
-                // useFindAndModify: false}
+                // useFindAndModify: false
+            // }
                 );
 
 let photo1 = {
@@ -22,16 +23,6 @@ let photo1 = {
     title: "Monte Fuji",
     description: "Foto del viaje de Japón"
 };
-
-Photo.create(photo1)
-    .then(function()
-    {
-        console.log('Saved the document from promise');
-        mongoose.disconnect();
-    })
-    .catch(function(){
-        console.log('Error writing the document')
-    })
 
 let photo2 = {
     user_name : 'Miguel',
@@ -69,14 +60,98 @@ let photo6 = {
 };
 
 
-Photo.insertMany([photo2, photo3, photo4, photo5, photo6])
+function uploadOne(photo){
+    Photo.create(photo)
+    .then(function()
+    {
+        console.log('Saved the document from promise');
+        mongoose.disconnect();
+    })
+    .catch(function(err){
+        console.log('Error writing the document',err)
+    })
+}
+
+function uploadMany(photos){
+    Photo.insertMany(photos)
     .then(function(){
         console.log('Saved the document');
         mongoose.disconnect();
     })
-    .catch(function(){
-        console.log('Error writing the document');
+    .catch(function(err){
+        console.log('Error writing the document', err);
     })
+}
+
+function findName(user_name){
+    Photo.find({user_name})
+    .then(function(items){
+        console.log(items);
+        mongoose.disconnect();
+    })
+    .catch(function(err){
+        console.log('Error', err);
+    })
+}
+
+function update(title, description){
+    Photo.updateOne({title}, {description})
+    .then(function(items){
+        console.log(items);
+        mongoose.disconnect();
+    })
+    .catch(function(err){
+        console.log('Error', err);
+    })
+}
+
+function deleteOnePic(user_name, title){
+Photo.deleteOne({'$and':[{user_name},{title}]})
+    .then(function(items){
+        console.log(items);
+        mongoose.disconnect();
+    })
+    .catch(function(err){
+        console.log('Error', err);
+    })
+}
+
+function deleteManyPics(user_name){
+    Photo.deleteMany({user_name})
+    .then(function(items){
+        console.log(items);
+        mongoose.disconnect();
+    })
+    .catch(function(){
+        console.log('Error');
+    })
+}
+
+
+
+
+
+
+//*********************************************************************/
+// Photo.create(photo1)
+//     .then(function()
+//     {
+//         console.log('Saved the document from promise');
+//         mongoose.disconnect();
+//     })
+//     .catch(function(){
+//         console.log('Error writing the document')
+//     })
+
+
+// Photo.insertMany([photo2, photo3, photo4, photo5, photo6])
+//     .then(function(){
+//         console.log('Saved the document');
+//         mongoose.disconnect();
+//     })
+//     .catch(function(){
+//         console.log('Error writing the document');
+//     })
 
 
 // Photo.find({user_name:'Angelita'})
@@ -127,3 +202,11 @@ Photo.insertMany([photo2, photo3, photo4, photo5, photo6])
 //     .catch(function(){
 //         console.log('Error');
 //     })
+//********************************************* */
+
+// uploadOne(photo1);
+// uploadMany([photo2, photo3, photo4, photo5, photo6]);
+// findName('Angelita');
+// update('Monte Fuji', 'Viaje de Japón');
+// deleteOnePic('Miguel', 'Salamanca');
+deleteManyPics('Marta');
