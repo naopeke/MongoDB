@@ -5,11 +5,10 @@ const photoCtrl = require('../controller/photo.controller');
 
 router.get('/photos', photoCtrl.getAllPics);
 
-router.post('/photos', photoCtrl.savePics);
+router.post('/photos', photoCtrl.uploadOne);
 
-router.put('/photos', photoCtrl.editPics);
+router.put('/photos', photoCtrl.updateOne);
 
-router.delete('/books', bookCtrl.deleteOnePics);
-router.delete('/books', bookCtrl.deleteAllPics);
+router.delete('/photos', photoCtrl.deletePics);
 
 module.exports = router;

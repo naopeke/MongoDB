@@ -127,6 +127,12 @@ function deleteManyPics(user_name){
     })
 }
 
+uploadOne(photo1);
+uploadMany([photo2, photo3, photo4, photo5, photo6]);
+findName('Angelita');
+// update('Monte Fuji', 'Viaje de Japón');
+// deleteOnePic('Miguel', 'Salamanca');
+// deleteManyPics('Marta');
 
 
 
@@ -204,9 +210,3 @@ function deleteManyPics(user_name){
 //     })
 //********************************************* */
 
-// uploadOne(photo1);
-// uploadMany([photo2, photo3, photo4, photo5, photo6]);
-// findName('Angelita');
-// update('Monte Fuji', 'Viaje de Japón');
-// deleteOnePic('Miguel', 'Salamanca');
-deleteManyPics('Marta');
