@@ -251,6 +251,19 @@ let marksModel = mongoose.model('bootcamps', MarkSchema);
 
 
 //• Calcular el número total de alumnos que hay en el bootcamp incluyendo repetidos.
+marksModel
+    .aggregate([
+        {$group: {_id: '$student.first.name'}},
+        {$count: 'totalAlumnos'}
+    ])
+    .then((result) => {
+        console.log(result);
+        mongoose.disconnect();
+    })
+    .catch((error) => {
+        console.log(error);
+    });
+
 // marksModel
 //    .aggregate([
 //       {$group: {_id: null, totalAlumnos: {$sum: 1}}},
@@ -327,17 +340,17 @@ let marksModel = mongoose.model('bootcamps', MarkSchema);
 
 
 //Calcular el numero de profesores que hay por cada asignatura incluyendo repetidos.
-marksModel
-    .aggregate([
-        {$unwind: '$teachers'},
-        {$group: {_id:'$subject_name', 'numero de profesores': {$sum:1}}},
-        {$project: {asignatura: '$_id', 'numero de profesores':1, _id:0}}
-    ])
-    .then((result) => {
-        console.log(result);
-        mongoose.disconnect();
-    })
-    .catch((error) => {
-        console.log(error);
-    });
+// marksModel
+//     .aggregate([
+//         {$unwind: '$teachers'},
+//         {$group: {_id:'$subject_name', 'numero de profesores': {$sum:1}}},
+//         {$project: {asignatura: '$_id', 'numero de profesores':1, _id:0}}
+//     ])
+//     .then((result) => {
+//         console.log(result);
+//         mongoose.disconnect();
+//     })
+//     .catch((error) => {
+//         console.log(error);
+//     });
 

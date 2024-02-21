@@ -1,10 +1,11 @@
-const PhotoModel = require('../model/photo')
+
+const PhotoModel = require('../models/photo');
 
 
 function getAllPics(req, res){
-    if(req.query.id == null){
-        PhotoModel.find({})
+    PhotoModel.find({user_name: req.query.user_name})
         .then((photo) =>{
+            console.log(req.query.user_name);
             console.log(photo);
             res.send(photo)
         })
@@ -12,29 +13,18 @@ function getAllPics(req, res){
             console.log(err);
             process.exit(-1);
         })
-    } else {
-        PhotoModel.findById(req.query.id)
-        .then((photo)=>{
-            console.log(photo);
-            res.send(photo);
-        })
-        .catch((err)=>{
-            console.log(err);
-            process.exit(-1)
-        })
-    }
 }
 
-function savePics(req, res){
+function uploadOne(req, res){
     console.log(req.body);
 
-    let foto = new PhotoModel({
-        user_name: req.body.name,
+    let photo = new PhotoModel({
+        user_name: req.body.user_name,
         url: req.body.url,
         title: req.body.title,
         description: req.body.description
     })
-    foto.save()
+    photo.save()
     .then((photo)=>{
         console.log('Foto guardado correctamente');
         console.log(photo);
@@ -45,14 +35,14 @@ function savePics(req, res){
     })
 }
 
-function editPics(req, res){
+function updateOne(req, res){
     console.log(req.body);
 
-    PhotoModel.findByIdAndUpdate(req.body.id,
-        {user_name: req.body.name,
-        url:req.body.url,
+    PhotoModel.findOneAndUpdate(
+        {
         title:req.body.title,
-        description:req.body.description
+        },
+        {$set: {description: req.body.description}
         }
         )
     .then((photo)=>{
@@ -64,21 +54,40 @@ function editPics(req, res){
     })
 }
 
-function deleteOnePics(req, res){
+function deletePics(req, res){
     console.log(req.body);
-    PhotoModel.deleteOne({user_name})
-    .then((photo)=>{
-        console.log('Foto eliminado correctamente');
-        res.send(photo);
-    })
-    .catch((err)=>{
-        console.log(err);
-    })
+    let user_name = req.body.user_name;
+    let title = req.body.title;
+
+    if(user_name && title){
+        PhotoModel.deleteOne(
+            {user_name:req.body.user_name,
+             title:req.body.title
+        })
+        .then((photo)=>{
+            console.log('Foto eliminado correctamente');
+            res.send(photo);
+        })
+        .catch((err)=>{
+            console.log(err);
+        })
+    } else if (user_name){
+        PhotoModel.deleteMany(
+            {user_name:req.body.user_name
+        })
+        .then((photo)=>{
+            console.log('Foto eliminado correctamente');
+            res.send(photo);
+        })
+        .catch((err)=>{
+            console.log(err);
+        })
+    }
 }
 
-function deleteAllPics(req, res){
+function deleteAll(req, res){
     console.log(req.body);
-    PhotoModel.deleteAll({user_name})
+    PhotoModel.deleteMany({user_name:req.body.user_name})
     .then((photo)=>{
         console.log('Foto eliminado correctamente');
         res.send(photo);
@@ -87,12 +96,14 @@ function deleteAllPics(req, res){
         console.log(err);
     })
 }
+     
+
+
 
 module.exports = {
     getAllPics,
-    savePics,
-    editPics,
-    deleteOnePics,
-    deleteAllPics
+    uploadOne,
+    updateOne,
+    deletePics
 }
 

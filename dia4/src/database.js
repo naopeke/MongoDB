@@ -1,8 +1,9 @@
 let mongoose = require('mongoose');
 
-mongoose.connect('mongodb+srv://naomukai:STGG0f3zjWIrLJT8@cluster0.vqow74u.mongodb.net/',
-{userNewUrlParser: true,
- userUnifiedTopology: true})
+mongoose.connect('mongodb+srv://naomukai:STGG0f3zjWIrLJT8@cluster0.vqow74u.mongodb.net/dia2',
+// {userNewUrlParser: true,
+//  userUnifiedTopology: true}
+ )
 
 .then((db)=>{
     console.log('database connected on ' + db.connection.host)
