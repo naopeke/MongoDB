@@ -94,8 +94,8 @@ function findName(user_name){
     })
 }
 
-function update(title, description){
-    Photo.updateOne({title}, {description})
+function update(title, newdescription){
+    Photo.updateOne({title}, {$set: {description: newdescription}})
     .then(function(items){
         console.log(items);
         mongoose.disconnect();
